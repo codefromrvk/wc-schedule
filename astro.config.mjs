@@ -2,6 +2,6 @@ import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
 export default defineConfig({
-  site: "https://rvkay.in",
+  site: "https://worldcup.rvkay.in",
   integrations: [tailwind(), sitemap()],
 });
