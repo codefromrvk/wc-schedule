@@ -1,0 +1,35 @@
+---
+import { supabase } from "supabase/index";
+let { data: matchList, error } = await supabase
+  .from("wc-schedule")
+  .select()
+  .order("matchOrder", { ascending: true });
+---
+
+<div class="overflow-auto ">
+  <table class="table-auto w-full">
+    <thead>
+      <tr class="border w-100 text-orange-600 text-left text-lg">
+        <th class="hidden sm:block pl-2">Match No.</th>
+        <th>Teams</th>
+        <th>Date</th>
+        <th>Stadium</th>
+      </tr>
+    </thead>
+    <tbody class="">
+      {
+        matchList.map(({ matchOrder, teams, stadium, date }) => {
+          return (
+            <tr class="text-white text-sm sm:text-lg mt-4">
+              <td class="hidden sm:block pl-2">{matchOrder}</td>
+              <td class="">{teams}</td>
+              <td class="text-xs sm:text-lg">{date}</td>
+              <td class="max-w-sm">{stadium}</td>
+            </tr>
+
+          );
+        })
+      }
+    </tbody>
+  </table>
+</div>
