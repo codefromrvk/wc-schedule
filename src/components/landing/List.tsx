@@ -9,6 +9,7 @@ type MatchListType = {
 };
 
 const teams = [
+  "Choose Team",
   "England",
   "New Zealand",
   "Pakistan",
@@ -36,30 +37,44 @@ const ReactComp = () => {
     getData();
   }, []);
   const handleChangeSelectedTeam = (e) => {
-    setSelectedTeam(e.target.value);
+    if (e.target.value === "Choose Team") setSelectedTeam(null);
+    else setSelectedTeam(e.target.value);
   };
-
+  const handleClear = () => {
+    setSelectedTeam(null);
+  };
+  
 
   return (
     <div className="overflow-auto">
-      <div className="border flex justify-end">
+      <div className="border-b-2 flex justify-end">
         <select
-          className=" rounded-lg my-4 mr-4  focus:ring-black focus:outline-black focus:border-black"
+          id="select-option"
+          className=" rounded-sm my-4 mr-4 uppercase font-semibold bg-white focus:ring-black  focus:border-black"
           onChange={handleChangeSelectedTeam}
         >
           {teams.map((team) => {
             return <option value={team}>{team}</option>;
           })}
         </select>
+        {selectedTeam && (
+          <button
+            className="bg-white border-2 border-orange-200 font-semibold hover:bg-orange-500 w-24  m-4 rounded-sm flex justify-center items-center"
+            onClick={handleClear}
+          >
+            CLEAR
+          </button>
+        )}
       </div>
 
-      <table className="table-auto w-full">
+      <table className="table-auto w-full uppercase font-semibold ">
         <thead>
           <tr className="border-b w-100 text-orange-600 text-left text-lg">
             <th className="hidden sm:block pl-2">Match No.</th>
-            <th className="pl-2">Teams</th>
-            <th>Date</th>
-            <th>Stadium</th>
+            <th className="pl-4">Teams</th>
+            <th>
+              <span className="sm:hidden">Date & </span>Stadium
+            </th>
           </tr>
         </thead>
         <tbody className="">
@@ -72,11 +87,14 @@ const ReactComp = () => {
             })
             .map(({ matchOrder, teams, stadium, date }) => {
               return (
-                <tr className="text-white text-sm sm:text-lg mt-4 border-b-2 ">
-                  <td className="hidden sm:block h-full pl-2">{matchOrder}</td>
-                  <td className="pl-2">{teams.trim()}</td>
-                  <td className="text-xs sm:text-lg">{date}</td>
-                  <td className="max-w-sm">{stadium}</td>
+                <tr className="text-white text-sm sm:text-lg  border-b-2 ">
+                  <td className="hidden sm:block h-full p-10">{matchOrder}</td>
+                  <td className="p-4">{teams.trim()}</td>
+                  <td className="max-w-sm">
+                    <span className="">{date}</span>
+                    <br />
+                    {stadium}
+                  </td>
                 </tr>
               );
             })}

@@ -1,14 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-:root { font-family: 'Inter', sans-serif; }
+:root {
+  font-family: "Inter", sans-serif;
+}
 @supports (font-variation-settings: normal) {
-  :root { font-family: 'Inter var', sans-serif; }
+  :root {
+    font-family: "Inter var", sans-serif;
+  }
 }
 /* CSS */
-:root { font-family: 'Helvetica', sans-serif; }
+:root {
+  font-family: "Helvetica", sans-serif;
+}
 @supports (font-variation-settings: normal) {
-  :root { font-family: 'Helvetica var', sans-serif; }
+  :root {
+    font-family: "Helvetica var", sans-serif;
+  }
 }
 @font-face {
   font-family: "Basement";
@@ -20,11 +28,30 @@
   font-style: normal;
   descent-override: 0%;
 }
-.gradient-grid  {
-
-background-image: radial-gradient(circle at center center, transparent 0%,rgba(255,255,255, 0) 99%),repeating-linear-gradient(0deg, rgba(205,205,205, 0.2) 0px, rgba(205,205,205, 0.2) 1px,transparent 1px, transparent 6px),repeating-linear-gradient(90deg, rgba(205,205,205, 0.2) 0px, rgba(205,205,205, 0.2) 1px,transparent 1px, transparent 6px),linear-gradient(90deg, rgba(255,255,255, 0),rgba(255,255,255, 0));
+.gradient-grid {
+  background-image: radial-gradient(
+      circle at center center,
+      transparent 0%,
+      rgba(255, 255, 255, 0) 99%
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(205, 205, 205, 0.2) 0px,
+      rgba(205, 205, 205, 0.2) 1px,
+      transparent 1px,
+      transparent 6px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(205, 205, 205, 0.2) 0px,
+      rgba(205, 205, 205, 0.2) 1px,
+      transparent 1px,
+      transparent 6px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));
 }
 
-/*.splide__pagination {
-  visibility: hidden;
-}*/
+#select-option:focus option:checked {
+  background-color: rgb(234 88 12); /* Change this to your desired color */
+  color: white; /* Change this to your desired text color */
+}
