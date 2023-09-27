@@ -39,7 +39,6 @@ const ReactComp = () => {
     setSelectedTeam(e.target.value);
   };
 
-  console.log("innns react", selectedTeam);
 
   return (
     <div className="overflow-auto">
@@ -66,7 +65,6 @@ const ReactComp = () => {
         <tbody className="">
           {matchList
             .filter(({ teams }) => {
-              console.log({ teams, selectedTeam });
               if (selectedTeam) {
                 return teams.includes(selectedTeam);
               }
