@@ -1,12 +1,31 @@
+---
+import { Icon } from "astro-icon";
+---
+
+<!-- <script>
+  const rss = document.getElementById("rss")
+  rss.addEventListener("click")
+</script> -->
 <footer class="border-white border-b bg-accent-500">
   <div class="mx-auto border-white border-x max-w-7xl">
     <div class="mx-auto p-8 items-start justify-between w-full">
       <div class="text-white text-center items-center mx-auto">
         <!-- <p class="uppercase  text-2xl">RVK</p> -->
         <p class="mx-auto mt-3 text-sm">
-          Built by <a class="underline font-display" href="https://rvkay.in/"
-            >RVK</a
-          >.
+          Built using <a
+            target="__blank"
+            class="underline font-display"
+            href="https://astro.build/">Astro</a
+          >,<a
+            target="__blank"
+            class="underline font-display"
+            href="https://tailwindcss.com/">Tailwind</a
+          >
+           ,<a
+            target="__blank"
+            class="underline font-display"
+            href="https://react.dev/">React</a
+          >
         </p>
         <p class="mx-auto mt-3 text-sm">
           Want to contribute ? <a
@@ -14,6 +33,17 @@
             href="https://github.com/codefromrvk">Github</a
           >.
         </p>
+        <div class="flex items-center justify-center gap-2 mt-10">
+          <a target="__blank" href="/rss.xml">
+            <Icon pack="mdi" name="rss" class="w-8 h-8" id="rss" />
+          </a>
+          <a
+            target="__blank"
+            href="https://github.com/codefromrvk/wc-schedule.git"
+          >
+            <Icon pack="mdi" name="github" class="w-8 h-8" id="rss" />
+          </a>
+        </div>
       </div>
     </div>
   </div>
