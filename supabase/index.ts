@@ -1,9 +1,8 @@
-import {createClient} from "@supabase/supabase-js"
-console.log(   process.env.SUPA_URL,
-  process.env.SUPA_KEY);
+import { createClient } from "@supabase/supabase-js"
+console.log(import.meta.env);
 
 // Create a single supabase client for interacting with your database
-export const  supabase= createClient(
-  import.meta.env.SUPA_URL,
-  import.meta.env.SUPA_KEY
-  )
+export const supabase = createClient(
+  import.meta.env.PUBLIC_SUPA_URL,
+  import.meta.env.PUBLIC_SUPA_KEY
+)

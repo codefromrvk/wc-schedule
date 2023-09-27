@@ -1,15 +1,29 @@
 ---
 import { supabase } from "supabase/index";
+import { selectedTeam } from "@/store";
+import ReactComp from "./List";
 let { data: matchList, error } = await supabase
   .from("wc-schedule")
   .select()
   .order("matchOrder", { ascending: true });
 ---
 
-<div class="overflow-auto ">
+<script define:vars={{ matchList }}>
+function handleChange(e) {
+  console.log("Changed", e.target.value);
+  console.log({ matchList });
+}
+document
+  .getElementById("selected-team")
+  .addEventListener("change", handleChange);
+</script>
+<div class="overflow-auto">
+  <ReactComp />
+
   <table class="table-auto w-full">
+    <h1 class="">{JSON.stringify(selectedTeam)}</h1>
     <thead>
-      <tr class="border-b w-100 text-orange-600 text-left text-lg ">
+      <tr class="border-b w-100 text-orange-600 text-left text-lg">
         <th class="hidden sm:block pl-2">Match No.</th>
         <th class="pl-2">Teams</th>
         <th>Date</th>
@@ -26,7 +40,6 @@ let { data: matchList, error } = await supabase
               <td class="text-xs sm:text-lg">{date}</td>
               <td class="max-w-sm">{stadium}</td>
             </tr>
-
           );
         })
       }

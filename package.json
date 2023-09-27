@@ -1,5 +1,5 @@
 {
-  "name": "@lexington/starter",
+  "name": "wc-schedule",
   "type": "module",
   "version": "0.0.1",
   "private": true,
@@ -11,14 +11,20 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/preact": "^2.2.2",
+    "@astrojs/react": "^3.0.2",
     "@astrojs/sitemap": "^2.0.2",
     "@astrojs/tailwind": "^5.0.0",
+    "@nanostores/react": "^0.7.1",
     "@supabase/supabase-js": "^2.36.0",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
     "astro": "^3.0.2",
     "install": "^0.13.0",
+    "nanostores": "^0.9.3",
     "npm": "^9.8.1",
     "preact": "^10.17.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "tailwindcss": "^3.3.3"
   },
   "devDependencies": {
