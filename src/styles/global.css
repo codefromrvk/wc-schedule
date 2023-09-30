@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 :root {
   font-family: "Inter", sans-serif;
 }
@@ -54,4 +55,16 @@
 #select-option:focus option:checked {
   background-color: rgb(234 88 12); /* Change this to your desired color */
   color: white; /* Change this to your desired text color */
+}
+
+/* ANIMATIONS */
+@media screen and (prefers-reduced-motion: no-preference) {
+  .fade-up {
+    @apply ease-in;
+    transition: all 0.5s var(--animation-delay, 0ms);
+  }
+
+  .fade-in {
+    transition: opacity 0.5s var(--animation-delay, 0ms);
+  }
 }

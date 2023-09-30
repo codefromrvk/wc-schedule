@@ -13,20 +13,24 @@ export function getStaticPaths() {
 const { team } = Astro.params;
 ---
 
-<!-- <div>Good team, {team}!</div> -->
 <BaseLayout>
   <section class="border-b border-white">
     <div
       class="max-w-7xl border-x mx-auto border-white px-8 py-12 gradient-grid"
     >
-      <div class="lg:pt-28 px-8 py-12 flex gap-3">
+      <div
+        class="lg:pt-28 px-8 py-12 flex gap-3
+      flex-col sm:flex-row justify-center md:justify-normal items-center"
+      >
         <h3 class="text-white font-display uppercase text-3xl lg:text-7xl">
-          Team {team}
+          Team
+        </h3>
+        <h3 class="text-white font-display uppercase text-3xl lg:text-7xl">
+          {team}
         </h3>
         <img
           alt={team}
-          width="75"
-          height="75"
+          class="w-12 sm:w-20"
           src=`http://purecatamphetamine.github.io/country-flag-icons/3x2/${teamList[team].symbol}.svg`
         />
       </div>
@@ -35,18 +39,16 @@ const { team } = Astro.params;
   <section
     class="border-white border-b mx-auto border-x max-w-7xl flex justify-center"
   >
-    <div class="flex items-center m-2">
-      <div class="text-white font-display uppercase text-2xl m-4">
-        <h3 class="font-display uppercase text-2xl text-orange-500">
-          Players:
-        </h3>
+    <div class="flex lg:flex-row flex-col-reverse items-center m-2">
+      <div class="text-white font-display sm:text-2xl uppercase m-4">
+        <h3 class="font-display uppercase text-orange-500">Players:</h3>
         {teamList[team].team}
       </div>
       <div
-        class="border border-spacing-4 h-56 w-56 relative rounded-lg p-24 m-4"
+        class="border border-spacing-4 h-60 w-64 relative rounded-lg p-24 m-4 shadow-white shadow-md"
       >
         <img
-          transition:name="captain-img"
+          transition:name=`captain-img-${team}`
           class="object-cover absolute inset-0 w-full h-full rounded-lg"
           src={teamList[team].captainImage}
         />

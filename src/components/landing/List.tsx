@@ -32,11 +32,14 @@ const ReactComp = () => {
     setSelectedTeam(null);
   };
 
-  if (matchList.length===0) {
+  if (matchList.length === 0) {
+    // if (true) {
     return (
       <div className="flex flex-col justify-center items-center">
+        <p className="mt-10 uppercase text-white md:text-5xl font-display">
+          Loading...
+        </p>
         <img className="p-10 w-[50%]" src="images/batball.png" />
-        <p className="absolute uppercase text-white text-7xl font-display">Loading...</p>
       </div>
     );
   }
@@ -85,11 +88,29 @@ const ReactComp = () => {
               return (
                 <tr className="text-white text-sm sm:text-lg  border-b-2 ">
                   <td className="hidden sm:block h-full p-10">{matchOrder}</td>
-                  <td className="p-4">{teams.trim()}</td>
+                  <td className="p-4 ">
+                    {teams
+                      .trim()
+                      .split("vs")
+                      .map((team, i) => {
+                        const name = team.replace(/\s/g, "").toLowerCase();
+                        return (
+                          <>
+                            <a
+                              className="hover:underline"
+                              href={`teams/${name}`}
+                            >
+                              {team.replace(/\s/g, "")}
+                            </a>
+                            {i < 1 ? " vs " : ""}
+                          </>
+                        );
+                      })}
+                  </td>
                   <td className="max-w-sm">
-                    <span className="">{date}</span>
+                    <span className=" ">{date}</span>
                     <br />
-                    {stadium}
+                    <span className="text-white/30">{stadium}</span>
                   </td>
                 </tr>
               );

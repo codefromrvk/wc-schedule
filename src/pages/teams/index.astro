@@ -49,7 +49,7 @@ import { teamList } from "utils";
     >
       <div class="mx-auto lg:pt-28 px-8 py-12">
         <h3 class="text-white font-display uppercase text-3xl lg:text-7xl">
-          World cup squad <br />(15-MEN)
+          Discover the Captains & Players
         </h3>
       </div>
     </div>
@@ -58,26 +58,31 @@ import { teamList } from "utils";
   <section
     class="border-white border-b mx-auto border-x max-w-7xl flex justify-center"
   >
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-10">
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-10 sm:p-10"
+    >
       {
         Object.keys(teamList).map((team) => {
           const { captainImage } = teamList[team];
           return (
-            <a
-              href={`teams/${team}`}
-              class="border border-spacing-4 h-56 w-56 relative rounded-lg"
-            >
-              <img
-                transition:name="captain-img"
-                class="object-cover absolute inset-0 w-full h-full rounded-lg"
-                src={captainImage}
-              />
-            </a>
+            <div class="relative fade-up hover:scale-105 ">
+              <div class="absolute text-white text-2xl  bottom-0 right-0 pr-2 z-10 uppercase font-display">
+                {team}
+              </div>
+              <a
+                href={`teams/${team}`}
+                class="btn-click-audio border block border-spacing-4 h-56 w-64 sm:w-56 relative rounded-lg shadow-white shadow-lg group-hover:border-orange-700 "
+              >
+                <img
+                  transition:name={`captain-img-${team}`}
+                  class="object-cover absolute inset-0 w-full h-full rounded-lg"
+                  src={captainImage}
+                />
+              </a>
+            </div>
           );
         })
       }
     </div>
-
-   
-  </section> 
+  </section>
 </BaseLayout>
