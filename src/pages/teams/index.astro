@@ -1,0 +1,83 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { ViewTransitions } from "astro:transitions";
+import { AstroSeo } from "@astrolib/seo";
+import { teamList } from "utils";
+---
+
+<AstroSeo
+  title="2023 ICC ODI Worldcup Schedule"
+  description="2023 ICC ODI Worldcup schedule India. List of all matches (IND vs PAK,ENG vs AUS) "
+  canonical="https://worldcup.rvkay.in"
+  openGraph={{
+    url: "https://worldcup.rvkay.in",
+    title: "2023 ICC ODI Worldcup Schedule",
+    description:
+      "ICC ODI Worldcup schedule India. List of all matches (IND vs PAK,ENG vs AUS)",
+    images: [
+      {
+        url: "https://worldcup.rvkay.in",
+        width: 1200,
+        height: 630,
+        alt: "Social open graph",
+        type: "image/jpeg",
+      },
+      {
+        url: "https://worldcup.rvkay.in",
+        width: 4096,
+        height: 4096,
+        alt: "Twitter open graph",
+        type: "image/jpeg",
+      },
+      { url: "https://worldcup.rvkay.in" },
+      { url: "https://worldcup.rvkay.in" },
+    ],
+    site_name: "YourSitesName",
+  }}
+  twitter={{
+    handle: "@0xrvk",
+    site: "@site",
+    cardType: "summary_large_image",
+  }}
+/>
+<BaseLayout>
+  <ViewTransitions />
+
+  <section class="border-b border-white">
+    <div
+      class="mx-auto max-w-7xl border-x border-white px-8 py-12 gradient-grid"
+    >
+      <div class="mx-auto lg:pt-28 px-8 py-12">
+        <h3 class="text-white font-display uppercase text-3xl lg:text-7xl">
+          World cup squad <br />(15-MEN)
+        </h3>
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="border-white border-b mx-auto border-x max-w-7xl flex justify-center"
+  >
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-10">
+      {
+        Object.keys(teamList).map((team) => {
+          const { captainImage } = teamList[team];
+          return (
+            <a
+              href={`teams/${team}`}
+              class="border border-spacing-4 h-56 w-56 relative rounded-lg"
+            >
+              <img
+                transition:name="captain-img"
+                class="object-cover absolute inset-0 w-full h-full rounded-lg"
+                src={captainImage}
+              />
+            </a>
+          );
+        })
+      }
+    </div>
+
+   
+  </section> 
+</BaseLayout>

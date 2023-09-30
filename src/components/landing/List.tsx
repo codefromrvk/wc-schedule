@@ -1,5 +1,6 @@
 import { supabase } from "supabase";
 import { useEffect, useState } from "react";
+import { teams } from "utils";
 
 type MatchListType = {
   matchOrder: number;
@@ -8,34 +9,21 @@ type MatchListType = {
   stadium: string;
 };
 
-const teams = [
-  "Choose Team",
-  "England",
-  "New Zealand",
-  "Pakistan",
-  "Bangladesh",
-  "Afghanistan",
-  "South Africa",
-  "Sri Lanka",
-  "India",
-  "Australia",
-];
 const ReactComp = () => {
   const [selectedTeam, setSelectedTeam] = useState(null);
   const [matchList, setMatchList] = useState<MatchListType[]>([]);
   useEffect(() => {
     async function getData() {
-      let { data, error } = await supabase
+      let { data } = await supabase
         .from("wc-schedule")
         .select()
         .order("matchOrder", { ascending: true });
-      // return { matchList, error };
       setMatchList(data);
     }
 
-    // const {matchList,error} =
     getData();
   }, []);
+
   const handleChangeSelectedTeam = (e) => {
     if (e.target.value === "Choose Team") setSelectedTeam(null);
     else setSelectedTeam(e.target.value);
@@ -43,7 +31,15 @@ const ReactComp = () => {
   const handleClear = () => {
     setSelectedTeam(null);
   };
-  
+
+  if (matchList.length===0) {
+    return (
+      <div className="flex flex-col justify-center items-center">
+        <img className="p-10 w-[50%]" src="images/batball.png" />
+        <p className="absolute uppercase text-white text-7xl font-display">Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="overflow-auto">
@@ -53,7 +49,7 @@ const ReactComp = () => {
           className=" rounded-sm my-4 mr-4 uppercase font-semibold bg-white focus:ring-black  focus:border-black"
           onChange={handleChangeSelectedTeam}
         >
-          {teams.map((team) => {
+          {["Choose Team", ...teams].map((team) => {
             return <option value={team}>{team}</option>;
           })}
         </select>

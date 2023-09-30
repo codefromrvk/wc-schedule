@@ -8,16 +8,11 @@ let { data: matchList, error } = await supabase
 
 export function GET(context) {
   return rss({
-    // `<title>` field in output xml
     title: "2023 ICC Cricket WorldCup Schedule",
-    // `<description>` field in output xml
     description:
       "List of all the matches of cricket world cup happening in India",
-    // Pull in your project "site" from the endpoint context
-    // https://docs.astro.build/en/reference/api-reference/#contextsite
+
     site: context.site,
-    // Array of `<item>`s in output xml
-    // See "Generating items" section for examples using content collections and glob imports
     items: matchList.map(({ teams, stadium, date }) => {
       return {
         title: `Match: ${teams}`,
