@@ -33,6 +33,7 @@ const ReactComp = () => {
   };
   const handleClear = () => {
     setSelectedTeam(null);
+    // setSelectedTeam("Choose Team");
   };
   const handleToggleTeamsFilter = () => {
     setTeamsFilter(!teamsFilter);
@@ -54,11 +55,12 @@ const ReactComp = () => {
       <div className="border-b-2 flex justify-end">
         <select
           id="select-option"
+          
           className=" rounded-sm my-4 mr-4 uppercase font-semibold bg-white focus:ring-black  focus:border-black"
           onChange={handleChangeSelectedTeam}
         >
           {["Choose Team", ...teams].map((team) => {
-            return <option value={team}>{team}</option>;
+            return <option key={team} value={team}>{team}</option>;
           })}
         </select>
         {selectedTeam && (
@@ -77,7 +79,7 @@ const ReactComp = () => {
             <th className="hidden sm:block pl-2">Match No.</th>
             <th className="pl-4" onClick={handleToggleTeamsFilter}>
               <div className="flex items-center gap-2 relative cursor-pointer">
-                <span>Teams</span>
+                <span>Match</span>
 
                 <div className="flex items-center ">
                   <MdSwapHorizontalCircle
@@ -97,7 +99,8 @@ const ReactComp = () => {
         <tbody>
           {matchList
             .filter(({ teams }) => {
-              if (selectedTeam) {
+
+              if (selectedTeam && selectedTeam !== "Choose Team") {
                 return teams.includes(selectedTeam);
               }
               return true;
