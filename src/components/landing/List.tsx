@@ -33,7 +33,7 @@ const ReactComp = () => {
   };
   const handleClear = () => {
     setSelectedTeam(null);
-    setSelectedTeam("Choose Team");
+    // setSelectedTeam("Choose Team");
   };
   const handleToggleTeamsFilter = () => {
     setTeamsFilter(!teamsFilter);
@@ -55,11 +55,12 @@ const ReactComp = () => {
       <div className="border-b-2 flex justify-end">
         <select
           id="select-option"
+          
           className=" rounded-sm my-4 mr-4 uppercase font-semibold bg-white focus:ring-black  focus:border-black"
           onChange={handleChangeSelectedTeam}
         >
           {["Choose Team", ...teams].map((team) => {
-            return <option value={team}>{team}</option>;
+            return <option key={team} value={team}>{team}</option>;
           })}
         </select>
         {selectedTeam && (
@@ -98,7 +99,8 @@ const ReactComp = () => {
         <tbody>
           {matchList
             .filter(({ teams }) => {
-              if (selectedTeam) {
+
+              if (selectedTeam && selectedTeam !== "Choose Team") {
                 return teams.includes(selectedTeam);
               }
               return true;
