@@ -38,13 +38,13 @@ const shouldBackButtonExist = Astro.url.pathname.includes("teams");
           class="btn-click-audio text-white font-display inline-flex items-center md:px-8 md:text-center py-4 uppercase"
         >
           <span>
-            {
+            <a href="/">2023 ICC ODI Worldcup</a>
+            <!-- {
               !shouldBackButtonExist ? (
-                <a href="/">2023 ICC ODI Worldcup</a>
               ) : (
                 <a href="javascript:history.back()">Back</a>
               )
-            }
+            } -->
           </span>
         </div>
       </div>
