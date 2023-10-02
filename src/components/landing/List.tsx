@@ -33,6 +33,7 @@ const ReactComp = () => {
   };
   const handleClear = () => {
     setSelectedTeam(null);
+    setSelectedTeam("Choose Team");
   };
   const handleToggleTeamsFilter = () => {
     setTeamsFilter(!teamsFilter);
@@ -77,7 +78,7 @@ const ReactComp = () => {
             <th className="hidden sm:block pl-2">Match No.</th>
             <th className="pl-4" onClick={handleToggleTeamsFilter}>
               <div className="flex items-center gap-2 relative cursor-pointer">
-                <span>Teams</span>
+                <span>Match</span>
 
                 <div className="flex items-center ">
                   <MdSwapHorizontalCircle

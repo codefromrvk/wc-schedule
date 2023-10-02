@@ -5,8 +5,9 @@ module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     animation: {
-      marquee: "marquee 15s linear infinite",
+      marquee: " marquee  15s linear infinite ",
       marquee2: "marquee2 25s linear infinite",
+      "marquee-none": "marquee-none 15s linear infinite",
       scroller3: "scroller3 25s linear infinite",
       "spin-slow": "spin 4s linear infinite",
       "spin-slower": "spin 6s linear infinite",
@@ -21,6 +22,10 @@ module.exports = {
       marquee: {
         "0%": { transform: "translateX(0%)" },
         "100%": { transform: "translateX(-100%)" },
+      },
+      "marquee-none": {
+        "0%": { transform: "translateX(0%)" },
+        "100%": { transform: "translateX(0%)" },
       },
       marquee2: {
         "0%": { transform: "translateX(100%)" },
