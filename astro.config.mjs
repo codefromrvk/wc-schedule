@@ -6,5 +6,10 @@ import react from "@astrojs/react";
 // https://astro.build/config
 export default defineConfig({
   site: "https://worldcup.rvkay.in",
-  integrations: [tailwind(), sitemap(), react()]
+  integrations: [tailwind(), sitemap(), react()],
+  vite: {
+    ssr: {
+      noExternal: ["react-icons"],
+    },
+  },
 });

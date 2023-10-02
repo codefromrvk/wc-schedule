@@ -2,6 +2,7 @@ import { supabase } from "supabase";
 import { useEffect, useState } from "react";
 import { teamList, teams } from "utils";
 import { MdSwapHorizontalCircle } from "react-icons/md";
+import Icon from "astro-icon";
 
 type MatchListType = {
   matchOrder: number;
@@ -75,10 +76,10 @@ const ReactComp = () => {
           <tr className="border-b w-100 text-orange-600 text-left text-lg">
             <th className="hidden sm:block pl-2">Match No.</th>
             <th className="pl-4" onClick={handleToggleTeamsFilter}>
-              <div className="flex items-center gap-2 relative">
+              <div className="flex items-center gap-2 relative cursor-pointer">
                 <span>Teams</span>
 
-                <div className="flex items-center">
+                <div className="flex items-center ">
                   <MdSwapHorizontalCircle
                     title="Swap"
                     color="white"
