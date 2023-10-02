@@ -14,7 +14,7 @@ type MatchListType = {
 const ReactComp = () => {
   const [selectedTeam, setSelectedTeam] = useState(null);
   const [matchList, setMatchList] = useState<MatchListType[]>([]);
-  const [teamsFilter, setTeamsFilter] = useState(false);
+  const [teamsFilter, setTeamsFilter] = useState(true);
   useEffect(() => {
     async function getData() {
       let { data } = await supabase
@@ -91,7 +91,7 @@ const ReactComp = () => {
                 </div>
               </div>
             </th>
-            <th>Stadium & Date</th>
+            <th>Venue & Date</th>
           </tr>
         </thead>
         <tbody>
@@ -105,9 +105,13 @@ const ReactComp = () => {
             .map(({ matchOrder, teams, stadium, date }) => {
               return (
                 <tr className="text-white text-sm sm:text-lg  border-b-2 ">
-                  <td className="hidden sm:block h-full p-10">{matchOrder}</td>
-                  <td className="p-4 ">
-                    <div className={`flex items-center gap-2 ${!teamsFilter?"flex-wrap":""}`}>
+                  <td className="hidden sm:block h-full p-10 ">{matchOrder}</td>
+                  <td className="p-4 flex-1">
+                    <div
+                      className={`flex items-center gap-2 ${
+                        !teamsFilter ? "flex-wrap" : ""
+                      }`}
+                    >
                       {teams
                         .trim()
                         .split("vs")
@@ -140,9 +144,12 @@ const ReactComp = () => {
                         })}
                     </div>
                   </td>
-                  <td className="max-w-sm">
-                    <span className="">{stadium}</span>
-                    <br />
+                  <td className="max-w-sm flex-1">
+                    <div className="flex flex-col">
+                      {stadium.split(",").map((ele) => {
+                        return <span>{ele}</span>;
+                      })}
+                    </div>
                     <span className="text-white/30 ">{date}</span>
                   </td>
                 </tr>
