@@ -75,7 +75,7 @@ const ReactComp = () => {
           <tr className="border-b w-100 text-orange-600 text-left text-lg">
             <th className="hidden sm:block pl-2">Match No.</th>
             <th className="pl-4" onClick={handleToggleTeamsFilter}>
-              <div className="flex items-center gap-3 relative">
+              <div className="flex items-center gap-2 relative">
                 <span>Teams</span>
 
                 <div className="flex items-center">
@@ -106,7 +106,7 @@ const ReactComp = () => {
                 <tr className="text-white text-sm sm:text-lg  border-b-2 ">
                   <td className="hidden sm:block h-full p-10">{matchOrder}</td>
                   <td className="p-4 ">
-                    <div className="flex flex-wrap items-center gap-2">
+                    <div className={`flex items-center gap-2 ${!teamsFilter?"flex-wrap":""}`}>
                       {teams
                         .trim()
                         .split("vs")
