@@ -1,5 +1,7 @@
 ---
 const { team } = Astro.params;
+import { Icon } from "astro-icon";
+import Sound from "./Sound";
 const shouldBackButtonExist = Astro.url.pathname.includes("teams");
 ---
 
@@ -7,16 +9,17 @@ const shouldBackButtonExist = Astro.url.pathname.includes("teams");
   const audio = new Audio();
   audio.src = "/audio/mouseclick.mp3";
   const clickableBtnList = document.getElementsByClassName("btn-click-audio");
-  for (let btn of clickableBtnList) {
-    btn.addEventListener("click", () => {
+  const audioHandler = () => {
+    if (screen.width > 676) {
       audio.play();
-    });
+    }
+  };
+  for (let btn of clickableBtnList) {
+    btn.addEventListener("click", audioHandler);
   }
   document.addEventListener("astro:after-swap", () => {
     for (let btn of clickableBtnList) {
-      btn.addEventListener("click", () => {
-        audio.play();
-      });
+      btn.addEventListener("click", audioHandler);
     }
   });
 </script>
@@ -59,6 +62,7 @@ const shouldBackButtonExist = Astro.url.pathname.includes("teams");
           class="btn-click-audio text-white font-display inline-flex items-center md:px-8 md:text-center py-4 uppercase"
           ><span>Teams</span>
         </a>
+        <!-- <Sound client:load/> -->
       </div>
     </div>
   </div>
