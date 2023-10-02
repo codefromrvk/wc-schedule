@@ -1,6 +1,8 @@
 import { supabase } from "supabase";
 import { useEffect, useState } from "react";
-import { teams } from "utils";
+import { teamList, teams } from "utils";
+import { MdSwapHorizontalCircle } from "react-icons/md";
+import Icon from "astro-icon";
 
 type MatchListType = {
   matchOrder: number;
@@ -12,6 +14,7 @@ type MatchListType = {
 const ReactComp = () => {
   const [selectedTeam, setSelectedTeam] = useState(null);
   const [matchList, setMatchList] = useState<MatchListType[]>([]);
+  const [teamsFilter, setTeamsFilter] = useState(false);
   useEffect(() => {
     async function getData() {
       let { data } = await supabase
@@ -31,9 +34,11 @@ const ReactComp = () => {
   const handleClear = () => {
     setSelectedTeam(null);
   };
+  const handleToggleTeamsFilter = () => {
+    setTeamsFilter(!teamsFilter);
+  };
 
   if (matchList.length === 0) {
-    // if (true) {
     return (
       <div className="flex flex-col justify-center items-center">
         <p className="mt-10 uppercase text-white md:text-5xl font-display">
@@ -70,13 +75,26 @@ const ReactComp = () => {
         <thead>
           <tr className="border-b w-100 text-orange-600 text-left text-lg">
             <th className="hidden sm:block pl-2">Match No.</th>
-            <th className="pl-4">Teams</th>
-            <th>
-              <span className="sm:hidden">Date & </span>Stadium
+            <th className="pl-4" onClick={handleToggleTeamsFilter}>
+              <div className="flex items-center gap-2 relative cursor-pointer">
+                <span>Teams</span>
+
+                <div className="flex items-center ">
+                  <MdSwapHorizontalCircle
+                    title="Swap"
+                    color="white"
+                    size={15}
+                  />
+                  {/* <div className="absolute left-20 bottom-2">
+                    {teamsFilter ? <TfiText /> : <FaFlag />}
+                  </div> */}
+                </div>
+              </div>
             </th>
+            <th>Stadium & Date</th>
           </tr>
         </thead>
-        <tbody className="">
+        <tbody>
           {matchList
             .filter(({ teams }) => {
               if (selectedTeam) {
@@ -89,28 +107,43 @@ const ReactComp = () => {
                 <tr className="text-white text-sm sm:text-lg  border-b-2 ">
                   <td className="hidden sm:block h-full p-10">{matchOrder}</td>
                   <td className="p-4 ">
-                    {teams
-                      .trim()
-                      .split("vs")
-                      .map((team, i) => {
-                        const name = team.replace(/\s/g, "").toLowerCase();
-                        return (
-                          <>
-                            <a
-                              className="hover:underline"
-                              href={`teams/${name}`}
-                            >
-                              {team.replace(/\s/g, "")}
-                            </a>
-                            {i < 1 ? " vs " : ""}
-                          </>
-                        );
-                      })}
+                    <div className={`flex items-center gap-2 ${!teamsFilter?"flex-wrap":""}`}>
+                      {teams
+                        .trim()
+                        .split("vs")
+                        .map((team, i) => {
+                          const name = team.replace(/\s/g, "").toLowerCase();
+
+                          return (
+                            <>
+                              {teamsFilter ? (
+                                <div>
+                                  {teamList[name]?.symbol && (
+                                    <img
+                                      src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${teamList[name]?.symbol}.svg`}
+                                      width={25}
+                                    />
+                                  )}
+                                </div>
+                              ) : (
+                                <a
+                                  className="hover:underline"
+                                  href={`teams/${name}`}
+                                >
+                                  {team.replace(/\s/g, "")}
+                                </a>
+                              )}
+
+                              {i < 1 ? " vs " : ""}
+                            </>
+                          );
+                        })}
+                    </div>
                   </td>
                   <td className="max-w-sm">
-                    <span className=" ">{date}</span>
+                    <span className="">{stadium}</span>
                     <br />
-                    <span className="text-white/30">{stadium}</span>
+                    <span className="text-white/30 ">{date}</span>
                   </td>
                 </tr>
               );
