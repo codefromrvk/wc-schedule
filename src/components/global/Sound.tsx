@@ -11,9 +11,6 @@ const Sound = () => {
         document.getElementsByClassName("btn-click-audio");
       for (let btn of clickableBtnList) {
         btn.classList.remove("btn-click-audio");
-        // removeEventListener("click", () => {
-        // //   audio.play();
-        // });
       }
     }
     setSound(currentState);
