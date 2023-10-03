@@ -31,7 +31,6 @@ const ReactComp = () => {
     else setSelectedTeam(e.target.value);
   };
   const handleClear = () => {
-    
     setSelectedTeam("Choose Team");
   };
   const handleToggleTeamsFilter = () => {
@@ -51,12 +50,10 @@ const ReactComp = () => {
     // Create a DateTimeFormat object with the user's detected time zone
     const userTimeFormat = new Intl.DateTimeFormat("en-US", {
       timeZone: userTimeZone,
-      // year: "numeric",
+      weekday: "short",
       month: "short",
       day: "numeric",
       hour: "numeric",
-      // minute: "2-digit",
-      // second: "2-digit",
       timeZoneName: "short",
     });
 
@@ -100,7 +97,10 @@ const ReactComp = () => {
                         )}
                       </div>
                     ) : (
-                      <a className="pl-2 hover:underline" href={`teams/${name}`}>
+                      <a
+                        className="pl-2 hover:underline"
+                        href={`teams/${name}`}
+                      >
                         {team.replace(/\s/g, "")}
                       </a>
                     )}
@@ -151,7 +151,7 @@ const ReactComp = () => {
             );
           })}
         </select>
-        {selectedTeam&&selectedTeam!=="Choose Team" && (
+        {selectedTeam && selectedTeam !== "Choose Team" && (
           <button
             className="bg-white border-2 border-orange-200 font-semibold hover:bg-orange-500 w-24  m-4 rounded-sm flex justify-center items-center"
             onClick={handleClear}
@@ -184,7 +184,6 @@ const ReactComp = () => {
         <tbody>
           {matchList
             .filter(({ teams }) => {
-              
               if (selectedTeam && selectedTeam !== "Choose Team") {
                 return teams.includes(selectedTeam);
               }
