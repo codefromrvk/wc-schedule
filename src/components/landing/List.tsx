@@ -100,7 +100,7 @@ const ReactComp = () => {
                         )}
                       </div>
                     ) : (
-                      <a className=" hover:underline" href={`teams/${name}`}>
+                      <a className="pl-2 hover:underline" href={`teams/${name}`}>
                         {team.replace(/\s/g, "")}
                       </a>
                     )}
