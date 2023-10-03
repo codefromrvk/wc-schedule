@@ -105,9 +105,11 @@ const ReactComp = () => {
               }
               return true;
             })
-            .map(({ matchOrder, teams, stadium, date }) => {
+            .map(({ matchOrder, teams, stadium, date },i) => {
+              const isSameDay = matchList[i]?.date.substring(0,6)===matchList[i-1]?.date.substring(0,6)
+
               return (
-                <tr className="text-white text-sm sm:text-lg  border-b-2 ">
+                <tr className={`text-white text-sm sm:text-lg ${isSameDay?"":"border-t-2"}  `}>
                   <td className="hidden sm:block h-full p-10 ">{matchOrder}</td>
                   <td className="p-4 flex-1">
                     <div
@@ -125,12 +127,12 @@ const ReactComp = () => {
                             <>
                               {teamsFilter ? (
                                 <div>
-                                  {teamList[name]?.symbol && (
+                                  {teamList[name]?.symbol ? (
                                     <img
                                       src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${teamList[name]?.symbol}.svg`}
                                       width={25}
                                     />
-                                  )}
+                                  ):"TBD"}
                                 </div>
                               ) : (
                                 <a
