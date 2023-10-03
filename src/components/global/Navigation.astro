@@ -52,16 +52,17 @@ const shouldBackButtonExist = Astro.url.pathname.includes("teams");
       <div
         class="text-white text-center items-center w-full flex flex-col justify-end md:px-0 sm:flex-row sm:px-8"
       >
+      <a
+      href="/teams"
+      class="btn-click-audio text-white font-display inline-flex items-center md:px-8 md:text-center py-4 uppercase"
+      ><span>Teams</span>
+    </a>
         <a
           href="/table"
           class="btn-click-audio text-white font-display inline-flex items-center md:px-8 md:text-center py-4 uppercase"
           ><span>Table</span>
         </a>
-        <a
-          href="/teams"
-          class="btn-click-audio text-white font-display inline-flex items-center md:px-8 md:text-center py-4 uppercase"
-          ><span>Teams</span>
-        </a>
+     
         <!-- <Sound client:load/> -->
       </div>
     </div>

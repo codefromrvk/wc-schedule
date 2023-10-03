@@ -68,8 +68,8 @@ const ReactComp = () => {
         <td className="hidden sm:block p-10 ">{matchOrder}</td>
         <td className="p-2 w-[50%] sm:w-1/3">
           <div
-            className={`flex  items-center gap-2  ${
-              !teamsFilter ? "flex-wrap " : "pl-2"
+            className={`flex  items-center gap-2 pl-2  ${
+              !teamsFilter ? "flex-wrap " : ""
             }`}
           >
             {teams
@@ -98,7 +98,7 @@ const ReactComp = () => {
                       </div>
                     ) : (
                       <a
-                        className="pl-2 hover:underline"
+                        className="hover:underline"
                         href={`teams/${name}`}
                       >
                         {team.replace(/\s/g, "")}
