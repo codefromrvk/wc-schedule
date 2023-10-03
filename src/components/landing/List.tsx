@@ -11,7 +11,7 @@ type MatchListType = {
 };
 
 const ReactComp = () => {
-  const [selectedTeam, setSelectedTeam] = useState(null);
+  const [selectedTeam, setSelectedTeam] = useState("Choose Team");
   const [matchList, setMatchList] = useState<MatchListType[]>([]);
   const [teamsFilter, setTeamsFilter] = useState(true);
   useEffect(() => {
@@ -31,8 +31,8 @@ const ReactComp = () => {
     else setSelectedTeam(e.target.value);
   };
   const handleClear = () => {
-    setSelectedTeam(null);
-    // setSelectedTeam("Choose Team");
+    
+    setSelectedTeam("Choose Team");
   };
   const handleToggleTeamsFilter = () => {
     setTeamsFilter(!teamsFilter);
@@ -71,8 +71,8 @@ const ReactComp = () => {
         <td className="hidden sm:block p-10 ">{matchOrder}</td>
         <td className="p-2 w-[50%] sm:w-1/3">
           <div
-            className={`flex  items-center gap-2 ${
-              !teamsFilter ? "flex-wrap" : ""
+            className={`flex  items-center gap-2  ${
+              !teamsFilter ? "flex-wrap " : "pl-2"
             }`}
           >
             {teams
@@ -84,7 +84,7 @@ const ReactComp = () => {
                 return (
                   <>
                     {teamsFilter ? (
-                      <div className="pl-2" title={name}>
+                      <div title={name}>
                         {teamList[name]?.symbol ? (
                           <a
                             className=" hover:underline"
@@ -140,6 +140,7 @@ const ReactComp = () => {
         <select
           id="select-option"
           className=" rounded-sm my-4 mr-4 uppercase font-semibold bg-white focus:ring-black  focus:border-black"
+          value={selectedTeam}
           onChange={handleChangeSelectedTeam}
         >
           {["Choose Team", ...teams].map((team) => {
@@ -150,7 +151,7 @@ const ReactComp = () => {
             );
           })}
         </select>
-        {selectedTeam && (
+        {selectedTeam&&selectedTeam!=="Choose Team" && (
           <button
             className="bg-white border-2 border-orange-200 font-semibold hover:bg-orange-500 w-24  m-4 rounded-sm flex justify-center items-center"
             onClick={handleClear}
@@ -183,6 +184,7 @@ const ReactComp = () => {
         <tbody>
           {matchList
             .filter(({ teams }) => {
+              
               if (selectedTeam && selectedTeam !== "Choose Team") {
                 return teams.includes(selectedTeam);
               }
