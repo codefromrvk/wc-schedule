@@ -2,7 +2,7 @@ import { supabase } from "supabase";
 import { useEffect, useState } from "react";
 import { teamList, teams } from "utils";
 import { MdSwapHorizontalCircle } from "react-icons/md";
-import Icon from "astro-icon";
+import ReactTooltip from "react-tooltip";
 
 type MatchListType = {
   matchOrder: number;
@@ -55,12 +55,15 @@ const ReactComp = () => {
       <div className="border-b-2 flex justify-end">
         <select
           id="select-option"
-          
           className=" rounded-sm my-4 mr-4 uppercase font-semibold bg-white focus:ring-black  focus:border-black"
           onChange={handleChangeSelectedTeam}
         >
           {["Choose Team", ...teams].map((team) => {
-            return <option key={team} value={team}>{team}</option>;
+            return (
+              <option key={team} value={team}>
+                {team}
+              </option>
+            );
           })}
         </select>
         {selectedTeam && (
@@ -99,19 +102,24 @@ const ReactComp = () => {
         <tbody>
           {matchList
             .filter(({ teams }) => {
-
               if (selectedTeam && selectedTeam !== "Choose Team") {
                 return teams.includes(selectedTeam);
               }
               return true;
             })
-            .map(({ matchOrder, teams, stadium, date },i) => {
-              const isSameDay = matchList[i]?.date.substring(0,6)===matchList[i-1]?.date.substring(0,6)
+            .map(({ matchOrder, teams, stadium, date }, i) => {
+              const isSameDay =
+                matchList[i]?.date.substring(0, 6) ===
+                matchList[i - 1]?.date.substring(0, 6);
 
               return (
-                <tr className={`text-white text-sm sm:text-lg ${isSameDay?"":"border-t-2"}  `}>
-                  <td className="hidden sm:block h-full p-10 ">{matchOrder}</td>
-                  <td className="p-4 flex-1">
+                <tr
+                  className={`text-white text-sm sm:text-lg ${
+                    isSameDay ? "" : "border-t-2"
+                  } `}
+                >
+                  <td className="hidden sm:block p-10 ">{matchOrder}</td>
+                  <td className="p-4 w-1/2 sm:w-1/3">
                     <div
                       className={`flex items-center gap-2 ${
                         !teamsFilter ? "flex-wrap" : ""
@@ -126,17 +134,24 @@ const ReactComp = () => {
                           return (
                             <>
                               {teamsFilter ? (
-                                <div>
+                                <div  title={name}>
                                   {teamList[name]?.symbol ? (
-                                    <img
-                                      src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${teamList[name]?.symbol}.svg`}
-                                      width={25}
-                                    />
-                                  ):"TBD"}
+                                    <a
+                                      className=" hover:underline"
+                                      href={`teams/${name}`}
+                                    >
+                                      <img
+                                        src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${teamList[name]?.symbol}.svg`}
+                                        width={25}
+                                      />
+                                    </a>
+                                  ) : (
+                                    "TBD"
+                                  )}
                                 </div>
                               ) : (
                                 <a
-                                  className="hover:underline"
+                                  className=" hover:underline"
                                   href={`teams/${name}`}
                                 >
                                   {team.replace(/\s/g, "")}
@@ -149,7 +164,7 @@ const ReactComp = () => {
                         })}
                     </div>
                   </td>
-                  <td className="max-w-sm flex-1">
+                  <td className="p-2">
                     <div className="flex flex-col">
                       {stadium.split(",").map((ele) => {
                         return <span>{ele}</span>;
