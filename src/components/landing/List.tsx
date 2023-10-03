@@ -27,6 +27,8 @@ const ReactComp = () => {
     getData();
   }, []);
 
+
+
   const handleChangeSelectedTeam = (e) => {
     if (e.target.value === "Choose Team") setSelectedTeam(null);
     else setSelectedTeam(e.target.value);
@@ -37,6 +39,91 @@ const ReactComp = () => {
   };
   const handleToggleTeamsFilter = () => {
     setTeamsFilter(!teamsFilter);
+  };
+
+  const renderRow = ({ matchOrder, teams, stadium, date, i }) => {
+    const isSameDay =
+      matchList[i]?.date.substring(0, 6) ===
+      matchList[i - 1]?.date.substring(0, 6);
+
+    // Convert the IST date string to a JavaScript Date object
+    const istDate = new Date(`${date},2023 UTC+5:30`);
+    // Use the user's coordinates to get their time zone
+    const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+    // Create a DateTimeFormat object with the user's detected time zone
+    const userTimeFormat = new Intl.DateTimeFormat("en-US", {
+      timeZone: userTimeZone,
+      // year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      // minute: "2-digit",
+      // second: "2-digit",
+      timeZoneName: "short",
+    });
+
+    // Format the date in the user's detected time zone
+    const formattedDate = userTimeFormat.format(istDate);
+    return (
+      <tr
+        className={`text-white text-sm sm:text-lg ${
+          isSameDay ? "" : "border-t-2"
+        } `}
+      >
+        <td className="hidden sm:block p-10 ">{matchOrder}</td>
+        <td className="p-4 w-1/2 sm:w-1/3">
+          <div
+            className={`flex items-center gap-2 ${
+              !teamsFilter ? "flex-wrap" : ""
+            }`}
+          >
+            {teams
+              .trim()
+              .split("vs")
+              .map((team, i) => {
+                const name = team.replace(/\s/g, "").toLowerCase();
+
+                return (
+                  <>
+                    {teamsFilter ? (
+                      <div title={name}>
+                        {teamList[name]?.symbol ? (
+                          <a
+                            className=" hover:underline"
+                            href={`teams/${name}`}
+                          >
+                            <img
+                              src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${teamList[name]?.symbol}.svg`}
+                              width={25}
+                            />
+                          </a>
+                        ) : (
+                          "TBD"
+                        )}
+                      </div>
+                    ) : (
+                      <a className=" hover:underline" href={`teams/${name}`}>
+                        {team.replace(/\s/g, "")}
+                      </a>
+                    )}
+
+                    {i < 1 ? " vs " : ""}
+                  </>
+                );
+              })}
+          </div>
+        </td>
+        <td className="p-2">
+          <div className="flex flex-col">
+            {stadium.split(",").map((ele) => {
+              return <span>{ele}</span>;
+            })}
+          </div>
+          <span className="text-white/30 ">{formattedDate}</span>
+        </td>
+      </tr>
+    );
   };
 
   if (matchList.length === 0) {
@@ -108,72 +195,7 @@ const ReactComp = () => {
               return true;
             })
             .map(({ matchOrder, teams, stadium, date }, i) => {
-              const isSameDay =
-                matchList[i]?.date.substring(0, 6) ===
-                matchList[i - 1]?.date.substring(0, 6);
-
-              return (
-                <tr
-                  className={`text-white text-sm sm:text-lg ${
-                    isSameDay ? "" : "border-t-2"
-                  } `}
-                >
-                  <td className="hidden sm:block p-10 ">{matchOrder}</td>
-                  <td className="p-4 w-1/2 sm:w-1/3">
-                    <div
-                      className={`flex items-center gap-2 ${
-                        !teamsFilter ? "flex-wrap" : ""
-                      }`}
-                    >
-                      {teams
-                        .trim()
-                        .split("vs")
-                        .map((team, i) => {
-                          const name = team.replace(/\s/g, "").toLowerCase();
-
-                          return (
-                            <>
-                              {teamsFilter ? (
-                                <div  title={name}>
-                                  {teamList[name]?.symbol ? (
-                                    <a
-                                      className=" hover:underline"
-                                      href={`teams/${name}`}
-                                    >
-                                      <img
-                                        src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${teamList[name]?.symbol}.svg`}
-                                        width={25}
-                                      />
-                                    </a>
-                                  ) : (
-                                    "TBD"
-                                  )}
-                                </div>
-                              ) : (
-                                <a
-                                  className=" hover:underline"
-                                  href={`teams/${name}`}
-                                >
-                                  {team.replace(/\s/g, "")}
-                                </a>
-                              )}
-
-                              {i < 1 ? " vs " : ""}
-                            </>
-                          );
-                        })}
-                    </div>
-                  </td>
-                  <td className="p-2">
-                    <div className="flex flex-col">
-                      {stadium.split(",").map((ele) => {
-                        return <span>{ele}</span>;
-                      })}
-                    </div>
-                    <span className="text-white/30 ">{date}</span>
-                  </td>
-                </tr>
-              );
+              return renderRow({ matchOrder, teams, stadium, date, i });
             })}
         </tbody>
       </table>
