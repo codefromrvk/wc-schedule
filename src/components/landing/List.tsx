@@ -2,7 +2,6 @@ import { supabase } from "supabase";
 import { useEffect, useState } from "react";
 import { teamList, teams } from "utils";
 import { MdSwapHorizontalCircle } from "react-icons/md";
-import ReactTooltip from "react-tooltip";
 
 type MatchListType = {
   matchOrder: number;
@@ -26,8 +25,6 @@ const ReactComp = () => {
 
     getData();
   }, []);
-
-
 
   const handleChangeSelectedTeam = (e) => {
     if (e.target.value === "Choose Team") setSelectedTeam(null);
@@ -72,9 +69,9 @@ const ReactComp = () => {
         } `}
       >
         <td className="hidden sm:block p-10 ">{matchOrder}</td>
-        <td className="p-4 w-1/2 sm:w-1/3">
+        <td className="p-2 w-[50%] sm:w-1/3">
           <div
-            className={`flex items-center gap-2 ${
+            className={`flex  items-center gap-2 ${
               !teamsFilter ? "flex-wrap" : ""
             }`}
           >
@@ -87,7 +84,7 @@ const ReactComp = () => {
                 return (
                   <>
                     {teamsFilter ? (
-                      <div title={name}>
+                      <div className="pl-2" title={name}>
                         {teamList[name]?.symbol ? (
                           <a
                             className=" hover:underline"
@@ -103,18 +100,18 @@ const ReactComp = () => {
                         )}
                       </div>
                     ) : (
-                      <a className=" hover:underline" href={`teams/${name}`}>
+                      <a className="pl-2 hover:underline" href={`teams/${name}`}>
                         {team.replace(/\s/g, "")}
                       </a>
                     )}
 
-                    {i < 1 ? " vs " : ""}
+                    {i < 1 ? <p className="block">vs</p> : ""}
                   </>
                 );
               })}
           </div>
         </td>
-        <td className="p-2">
+        <td className="py-2">
           <div className="flex flex-col">
             {stadium.split(",").map((ele) => {
               return <span>{ele}</span>;
@@ -166,7 +163,7 @@ const ReactComp = () => {
       <table className="table-auto w-full uppercase font-semibold ">
         <thead>
           <tr className="border-b w-100 text-orange-600 text-left text-lg">
-            <th className="hidden sm:block pl-2">Match No.</th>
+            <th className="hidden sm:block pl-4">Match No.</th>
             <th className="pl-4" onClick={handleToggleTeamsFilter}>
               <div className="flex items-center gap-2 relative cursor-pointer">
                 <span>Match</span>
@@ -177,9 +174,6 @@ const ReactComp = () => {
                     color="white"
                     size={15}
                   />
-                  {/* <div className="absolute left-20 bottom-2">
-                    {teamsFilter ? <TfiText /> : <FaFlag />}
-                  </div> */}
                 </div>
               </div>
             </th>
