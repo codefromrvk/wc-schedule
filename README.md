@@ -19,11 +19,11 @@ This project, built using Astro, displays the schedule for the ODI World Cup in 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/odi-world-cup-schedule.git
+   git clone https://github.com/your-username/wc-schedule.git
 
 2. **Install dependencies:**
    ```bash
-    cd odi-world-cup-schedule
+    cd wc-schedule
     pnpm install
 3. **Start the development Server**
     ```bash
