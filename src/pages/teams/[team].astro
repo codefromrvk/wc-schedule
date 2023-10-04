@@ -26,6 +26,7 @@ const { team } = Astro.params;
           {team}
         </h3>
         <img
+          transition:name={`${team}-flag`}
           alt={team}
           class="w-12 sm:w-20"
           src=`http://purecatamphetamine.github.io/country-flag-icons/3x2/${teamList[team].symbol}.svg`
