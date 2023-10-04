@@ -61,12 +61,13 @@ const ReactComp = () => {
     const formattedDate = userTimeFormat.format(istDate);
     return (
       <tr
-        className={`text-white text-sm sm:text-lg ${
+        className={`text-white text-sm sm:text-lg  ${
           isSameDay ? "" : "border-t-2"
         } `}
       >
-        <td className="hidden sm:block p-10 ">{matchOrder}</td>
-        <td className="p-2 w-[50%] sm:w-1/3">
+        <td className="hidden sm:inline-block p-10 w-[20%]">{matchOrder}</td>
+        {/* w-[50%] sm:w-1/3 */}
+        <td className="p-2  sm:w-[40%] ">
           <div
             className={`flex  items-center gap-2 pl-2  ${
               !teamsFilter ? "flex-wrap " : ""
@@ -97,10 +98,7 @@ const ReactComp = () => {
                         )}
                       </div>
                     ) : (
-                      <a
-                        className="hover:underline"
-                        href={`teams/${name}`}
-                      >
+                      <a className="hover:underline" href={`teams/${name}`}>
                         {team.replace(/\s/g, "")}
                       </a>
                     )}
@@ -111,7 +109,7 @@ const ReactComp = () => {
               })}
           </div>
         </td>
-        <td className="py-2">
+        <td className="py-4 w-[65%] sm:w-[40%]">
           <div className="flex flex-col">
             {stadium.split(",").map((ele) => {
               return <span>{ele}</span>;
@@ -139,7 +137,7 @@ const ReactComp = () => {
       <div className="border-b-2 flex justify-end">
         <select
           id="select-option"
-          className=" rounded-sm my-4 mr-4 uppercase font-semibold bg-white focus:ring-black  focus:border-black"
+          className=" rounded-sm my-4 mr-4 text-sm uppercase font-semibold bg-white focus:ring-black  focus:border-black"
           value={selectedTeam}
           onChange={handleChangeSelectedTeam}
         >
@@ -153,7 +151,7 @@ const ReactComp = () => {
         </select>
         {selectedTeam && selectedTeam !== "Choose Team" && (
           <button
-            className="bg-white border-2 border-orange-200 font-semibold hover:bg-orange-500 w-24  m-4 rounded-sm flex justify-center items-center"
+            className="bg-white border-2 border-orange-200 font-semibold hover:bg-orange-500 w-24  m-4 rounded-sm text-sm flex justify-center items-center"
             onClick={handleClear}
           >
             CLEAR
@@ -161,9 +159,9 @@ const ReactComp = () => {
         )}
       </div>
 
-      <table className="table-auto w-full uppercase font-semibold ">
-        <thead>
-          <tr className="border-b w-100 text-orange-600 text-left text-lg">
+      <table className="table-auto w-full uppercase font-semibold  ">
+        <thead >
+          <tr className="border-b  text-orange-600 text-left text-lg  ">
             <th className="hidden sm:block pl-4">Match No.</th>
             <th className="pl-4" onClick={handleToggleTeamsFilter}>
               <div className="flex items-center gap-2 relative cursor-pointer">
