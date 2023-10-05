@@ -36,9 +36,11 @@ const List = () => {
     url.searchParams.set("team", e.target.value.toLowerCase());
     if (e.target.value === "choose team") setSelectedTeam(null);
     else setSelectedTeam(e.target.value);
-    history.pushState(null, "", url.toString());
+    history.replaceState(null, "", url.toString());
   };
   const handleClear = () => {
+    const url = new URL(window.location.origin);
+    history.pushState(null, "", url);
     setSelectedTeam("choose team");
   };
   const handleToggleTeamsFilter = () => {
