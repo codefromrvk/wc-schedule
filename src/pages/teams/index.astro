@@ -41,7 +41,6 @@ import { teamList } from "utils";
   }}
 />
 <BaseLayout>
-  <ViewTransitions />
 
   <section class="border-b border-white">
     <div
@@ -65,7 +64,7 @@ import { teamList } from "utils";
         Object.keys(teamList).map((team) => {
           const { captainImage } = teamList[team];
           return (
-            <div class="relative fade-up hover:scale-105 ">
+            <div class="relative fade-up hover:scale-105 " >
               <div class="absolute text-white text-2xl  bottom-0 right-0 pr-2 z-10 uppercase font-display">
                 {team}
               </div>

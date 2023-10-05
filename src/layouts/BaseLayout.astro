@@ -2,7 +2,7 @@
 import BaseHead from "@/components/BaseHead.astro";
 import Navigation from "@/components/global/Navigation.astro";
 import Footer from "@/components/global/Footer.astro";
-import { ViewTransitions } from "astro:transitions";
+import { ViewTransitions, fade } from "astro:transitions";
 ---
 
 <html lang="en" class="selection:bg-carrot selection:text-white">
@@ -10,7 +10,7 @@ import { ViewTransitions } from "astro:transitions";
     <BaseHead />
     <ViewTransitions />
   </head>
-  <body class="mx-auto bg-black 2xl:max-w-7xl">
+  <body class="mx-auto min-h-screen bg-black 2xl:max-w-7xl" transition:animate={fade({ duration: '0.6s' })}>
     <Navigation />
     <slot />
     <Footer />

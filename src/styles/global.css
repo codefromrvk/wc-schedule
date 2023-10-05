@@ -4,6 +4,8 @@
 
 :root {
   font-family: "Inter", sans-serif;
+  scrollbar-gutter: stable;
+  /* scrollbar-gutter: "white"; */
 }
 @supports (font-variation-settings: normal) {
   :root {
