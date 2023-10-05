@@ -10,10 +10,15 @@ type MatchListType = {
   stadium: string;
 };
 
-const ReactComp = () => {
-  const [selectedTeam, setSelectedTeam] = useState("Choose Team");
+const List = () => {
+  const [selectedTeam, setSelectedTeam] = useState(() => {
+    const filterTeam = window.location.search.split("=")[1];
+
+    return filterTeam ?? "choose team";
+  });
   const [matchList, setMatchList] = useState<MatchListType[]>([]);
   const [teamsFilter, setTeamsFilter] = useState(true);
+
   useEffect(() => {
     async function getData() {
       let { data } = await supabase
@@ -27,11 +32,14 @@ const ReactComp = () => {
   }, []);
 
   const handleChangeSelectedTeam = (e) => {
-    if (e.target.value === "Choose Team") setSelectedTeam(null);
+    const url = new URL(window.location.href);
+    url.searchParams.set("team", e.target.value.toLowerCase());
+    if (e.target.value === "choose team") setSelectedTeam(null);
     else setSelectedTeam(e.target.value);
+    history.pushState(null, "", url.toString());
   };
   const handleClear = () => {
-    setSelectedTeam("Choose Team");
+    setSelectedTeam("choose team");
   };
   const handleToggleTeamsFilter = () => {
     setTeamsFilter(!teamsFilter);
@@ -66,7 +74,6 @@ const ReactComp = () => {
         } `}
       >
         <td className="hidden sm:inline-block p-10 w-[20%]">{matchOrder}</td>
-        {/* w-[50%] sm:w-1/3 */}
         <td className="p-2  sm:w-[40%] ">
           <div
             className={`flex  items-center gap-2 pl-2  ${
@@ -123,11 +130,15 @@ const ReactComp = () => {
 
   if (matchList.length === 0) {
     return (
-      <div className="flex flex-col justify-center items-center">
-        <p className="mt-10 uppercase text-white md:text-5xl font-display">
+      <div className="flex flex-col justify-center items-center p-4 relative  ">
+        <p className="mt-10   uppercase text-white md:text-5xl font-display shadow-lg  animate-pulse">
           Loading...
         </p>
-        <img className="p-10 w-[50%]" src="images/batball.png" />
+
+        <img
+          className="p-10  object-contain w-[50%]"
+          src="images/batball.png"
+        />
       </div>
     );
   }
@@ -141,15 +152,15 @@ const ReactComp = () => {
           value={selectedTeam}
           onChange={handleChangeSelectedTeam}
         >
-          {["Choose Team", ...teams].map((team) => {
+          {["choose team", ...teams].map((team) => {
             return (
-              <option key={team} value={team}>
+              <option key={team} value={team.toLowerCase()}>
                 {team}
               </option>
             );
           })}
         </select>
-        {selectedTeam && selectedTeam !== "Choose Team" && (
+        {selectedTeam && selectedTeam !== "choose team" && (
           <button
             className="bg-white border-2 border-orange-200 font-semibold hover:bg-orange-500 w-24  m-4 rounded-sm text-sm flex justify-center items-center"
             onClick={handleClear}
@@ -160,7 +171,7 @@ const ReactComp = () => {
       </div>
 
       <table className="table-auto w-full uppercase font-semibold  ">
-        <thead >
+        <thead>
           <tr className="border-b  text-orange-600 text-left text-lg  ">
             <th className="hidden sm:block pl-4">Match No.</th>
             <th className="pl-4" onClick={handleToggleTeamsFilter}>
@@ -182,8 +193,8 @@ const ReactComp = () => {
         <tbody>
           {matchList
             .filter(({ teams }) => {
-              if (selectedTeam && selectedTeam !== "Choose Team") {
-                return teams.includes(selectedTeam);
+              if (selectedTeam && selectedTeam !== "choose team") {
+                return teams.toLowerCase().includes(selectedTeam.toLowerCase());
               }
               return true;
             })
@@ -196,4 +207,4 @@ const ReactComp = () => {
   );
 };
 
-export default ReactComp;
+export default List;

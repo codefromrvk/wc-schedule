@@ -1,0 +1,20 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+let data = await fetch(
+  "https://hs-consumer-api.espncricinfo.com/v1/pages/match/scorecard?lang=en&seriesId=1393958&matchId=1384392"
+);
+data = await data.json();
+
+---
+
+<!-- <BaseLayout>
+</BaseLayout> -->
+  <section
+    class="border-white border-b mx-auto border-x max-w-7xl flex justify-center min-h-screen"
+  >
+    <div class="m-auto sm:p-10">
+      <h3 class="text-white font-display uppercase text-3xl lg:text-7xl">
+        Score : {displayString}
+      </h3>
+    </div>
+  </section>

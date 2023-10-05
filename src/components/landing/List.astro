@@ -1,18 +1,45 @@
 ---
 import { supabase } from "supabase/index";
-import ReactComp from "./List";
+import { teams } from "utils";
+
 let { data: matchList, error } = await supabase
   .from("wc-schedule")
   .select()
   .order("matchOrder", { ascending: true });
+// const team = Astro.url.searchParams.get("team");
 ---
 
+<script>
+  import { navigate } from "astro:transitions/client";
+
+  const selectRef = document.getElementById("select-option");
+  selectRef.addEventListener("change", (e) => {
+    const url = new URL(window.location.href);
+    url.searchParams.set("team", selectRef.value);
+    navigate(url.href);
+  });
+  selectRef.addEventListener("astro:astro-swap", (e) => {
+    selectRef.addEventListener("change", (e) => {
+      const url = new URL(window.location.href);
+      url.searchParams.set("team", selectRef.value);
+      navigate(url.href);
+    });
+  });
 </script>
 <div class="overflow-auto">
-  <ReactComp />
-
+  <select
+    id="select-option"
+    transition:persist
+    class="rounded-sm my-4 mr-4 text-sm uppercase font-semibold bg-white focus:ring-black focus:border-black"
+  >
+    {
+      ["Choose Team", ...teams].map((team) => {
+        return <option value={team}>{team}</option>;
+      })
+    }
+  </select>
   <table class="table-auto w-full">
-    <h1 class="">{JSON.stringify(selectedTeam)}</h1>
+    <!-- <h1 class="">{JSON.stringify(selectedTeam)}</h1> -->
     <thead>
       <tr class="border-b w-100 text-orange-600 text-left text-lg">
         <th class="hidden sm:block pl-2">Match No.</th>

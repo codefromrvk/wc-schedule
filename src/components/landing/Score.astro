@@ -1,0 +1,51 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+let data = await fetch(
+  "https://hs-consumer-api.espncricinfo.com/v1/pages/match/scorecard?lang=en&seriesId=1393958&matchId=1384392"
+);
+data = await data.json();
+let displayString, oversBowled;
+if (data.content.innings.length > 1) {
+  displayString =
+    data.content.innings[1].team.abbreviation +
+    "-" +
+    data.content.innings[1].runs +
+    "/" +
+    data.content.innings[1].wickets +
+    " ";
+  oversBowled = getCurrentOverFormatted(data.content.innings[1].balls);
+} else {
+  displayString =
+    data.content.innings[0].team.abbreviation +
+    "-" +
+    data.content.innings[0].runs +
+    "/" +
+    data.content.innings[0].wickets;
+  oversBowled = getCurrentOverFormatted(data.content.innings[0].balls);
+}
+
+function getCurrentOverFormatted(balls) {
+  // Calculate the full overs
+  var fullOvers = Math.floor(balls / 6);
+  // Calculate the remaining balls after full overs
+  var remainingBalls = balls % 6;
+
+  // Format the current over as "X.Y"
+  var currentOver = fullOvers + "." + remainingBalls;
+  return currentOver;
+}
+---
+
+<!-- <BaseLayout>
+</BaseLayout> -->
+<section class="border-white border-b border-x max-w-7xl">
+  <div class="p-4">
+    <h3 class="text-white font-display uppercase text-center lg:text-3xl">
+      LIVE SCORE : <br class="lg:hidden" />
+      {displayString}<span class="text-sm lg:text-xl text-white/50"
+        >{oversBowled}</span
+      >
+       (ENG vs NZ)
+    </h3>
+  </div>
+</section>
