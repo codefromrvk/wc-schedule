@@ -21,7 +21,7 @@ export const teamList: Record<string, TeamInfo> = {
   "afghanistan": {
     team: `Hashmatullah Shahidi (c), Rahmanullah Gurbaz, Ibrahim Zadran, Riaz Hassan, Rahmat Shah, Najibullah Zadran, Mohammad Nabi, Ikram Alikhil, Azmatullah Omarzai, Rashid Khan, Mujeeb ur Rahman, Noor Ahmad, Fazalhaq Farooqi, Abdul Rahman, Naveen-ul-Haq.`,
     symbol: 'AF',
-    captainImage: "https://resources.pulse.icc-cricket.com/players/284/2884.png"
+    captainImage: "https://static-files.cricket-australia.pulselive.com/headshots/288/366-camedia.png"
   },
   australia: {
     team: `Pat Cummins (c), Steve Smith, Alex Carey, Josh Inglis, Sean Abbott, Marnus Labuschagne, Cameron Green, Josh Hazlewood, Travis Head, Mitch Marsh, Glenn Maxwell, Marcus Stoinis, David Warner, Adam Zampa, Mitchell Starc.`,
@@ -31,7 +31,7 @@ export const teamList: Record<string, TeamInfo> = {
   "bangladesh": {
     team: `Shakib Al Hasan (c), Litton Kumer Das, Tanzid Hasan Tamim, Najmul Hossain Shanto (vc), Tawhid Hridoy, Mushfiqur Rahim, Mahmudullah Riyad, Mehidy Hasan Miraz, Nasum Ahmed, Shak Mahedi Hasan, Taskin Ahmed, Mustafizur Rahman, Hasan Mahmud, Shoriful Islam, Tanzim Hasan Sakib.`,
     symbol: 'BD',
-    captainImage: "https://resources.pulse.icc-cricket.com/players/210/201.png"
+    captainImage: "https://static-files.cricket-australia.pulselive.com/headshots/440/7702-camedia.png"
   },
   "england": {
     team: `Jos Buttler (c), Moeen Ali, Gus Atkinson, Jonny Bairstow, Sam Curran, Liam Livingstone, Dawid Malan, Adil Rashid, Joe Root, Harry Brook, Ben Stokes, Reece Topley, David Willey, Mark Wood, Chris Woakes.`,
@@ -62,12 +62,12 @@ export const teamList: Record<string, TeamInfo> = {
   "southafrica": {
     team: `Temba Bavuma (c), Gerald Coetzee, Quinton de Kock, Reeza Hendricks, Marco Jansen, Heinrich Klaasen, Keshav Maharaj, Aiden Markram, David Miller, Lungi Ngidi, Andile Phehlukwayo, Kagiso Rabada, Tabraiz Shamsi, Rassie van der Dussen, Lizaad Williams`,
     symbol: 'ZA',
-    captainImage: "https://resources.pulse.icc-cricket.com/players/210/833.png"
+    captainImage: "https://static-files.cricket-australia.pulselive.com/headshots/440/1748-camedia.png"
   },
   "srilanka": {
     team: `Sri Lanka Squad: Dasun Shanaka (c), Kusal Mendis (vc), Kusal Perera, Pathum Nissanka, Dimuth Karunaratne, Sadeera Samarawickrama, Charith Asalanka, Dhananjaya de Silva, Dushan Hemantha, Maheesh Theekshana, Dunith Wellalage, Kasun Rajitha, Matheesha Pathirana, Lahiru Kumara, Dilshan Madushanka`,
     symbol: 'LK',
-    captainImage: "https://resources.pulse.icc-cricket.com/ICC/photo/2022/10/18/c8100c9e-de1c-4c83-979d-b3e74ce4b6f4/Dasun-Shanaka-poses-during-the-Sri-Lanka-ICC-Men-s-T20-Cricket-World-Cup-2022-team-headshots.jpg"
+    captainImage: "https://static-files.cricket-australia.pulselive.com/headshots/440/561-camedia.png"
   }
 };
 
