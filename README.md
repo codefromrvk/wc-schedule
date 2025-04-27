@@ -7,6 +7,7 @@ This project, built using Astro, displays the schedule for the ODI World Cup in 
 - Display the schedule of ODI World Cup matches.
 - Provide match details including date, time, teams, and venue.
 - Intuitive and responsive design for easy navigation and viewing.
+- Smooth transitions from team list to individual team using view transitions API.
 
 ## Technologies Used 🛠️
 
