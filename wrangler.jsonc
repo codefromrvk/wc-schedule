@@ -1,5 +1,5 @@
 {
-    "name": "worker-name",
+    "name": "wc-schedule",
     "compatibility_date": "2025-04-27",
     "assets": {
         "directory": "./dist"
