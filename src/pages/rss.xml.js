@@ -17,7 +17,7 @@ export function GET(context) {
       return {
         title: `Match: ${teams}`,
         description: `Date: ${date}, Stadium: ${stadium}`,
-        link: `https://worldcup.rvkay.in/`,
+        link: `https://worldcup2023.varshithkumar.com/`,
         pubDate: "Sun, 28 Sep 2023 00:00:00 GMT", // Format the date as RFC 822
       };
     }),

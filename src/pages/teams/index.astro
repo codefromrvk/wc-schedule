@@ -8,31 +8,31 @@ import { teamList } from "utils";
 <AstroSeo
   title="2023 ICC ODI Worldcup Schedule"
   description="2023 ICC ODI Worldcup schedule India. List of all matches (IND vs PAK,ENG vs AUS) "
-  canonical="https://worldcup.rvkay.in"
+  canonical="https://worldcup2023.varshithkumar.com"
   openGraph={{
-    url: "https://worldcup.rvkay.in",
+    url: "https://worldcup2023.varshithkumar.com",
     title: "2023 ICC ODI Worldcup Schedule",
     description:
       "ICC ODI Worldcup schedule India. List of all matches (IND vs PAK,ENG vs AUS)",
     images: [
       {
-        url: "https://worldcup.rvkay.in",
+        url: "https://worldcup2023.varshithkumar.com",
         width: 1200,
         height: 630,
         alt: "Social open graph",
         type: "image/jpeg",
       },
       {
-        url: "https://worldcup.rvkay.in",
+        url: "https://worldcup2023.varshithkumar.com",
         width: 4096,
         height: 4096,
         alt: "Twitter open graph",
         type: "image/jpeg",
       },
-      { url: "https://worldcup.rvkay.in" },
-      { url: "https://worldcup.rvkay.in" },
+      { url: "https://worldcup2023.varshithkumar.com" },
+      { url: "https://worldcup2023.varshithkumar.com" },
     ],
-    site_name: "YourSitesName",
+    site_name: "ODI Cricket World Cup schedule website 2023",
   }}
   twitter={{
     handle: "@0xrvk",
@@ -41,7 +41,6 @@ import { teamList } from "utils";
   }}
 />
 <BaseLayout>
-
   <section class="border-b border-white">
     <div
       class="mx-auto max-w-7xl border-x border-white px-8 py-12 gradient-grid"
@@ -55,7 +54,7 @@ import { teamList } from "utils";
   </section>
 
   <section
-    class="border-white border-b mx-auto border-x max-w-7xl flex justify-center "
+    class="border-white border-b mx-auto border-x max-w-7xl flex justify-center"
   >
     <div
       class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 my-10 sm:p-10"
@@ -64,12 +63,12 @@ import { teamList } from "utils";
         Object.keys(teamList).map((team) => {
           const { captainImage } = teamList[team];
           return (
-            <div class="relative fade-up hover:scale-105 " >
+            <div class="relative fade-up hover:scale-105 ">
               <div class="absolute text-white text-2xl  bottom-0 right-0 pr-2 z-10 uppercase font-display">
                 {team}
               </div>
               <a
-                href={`teams/${team}`}
+                href={`/teams/${team}`}
                 class="btn-click-audio border block border-spacing-4 h-56 w-64 sm:w-56 relative rounded-lg shadow-white shadow-lg group-hover:border-orange-700 "
               >
                 <img
