@@ -1,4 +1,4 @@
-# 2023 ODI World Cup Cricket Schedule Project 🏏
+# 2023 ODI Cricket World Cup Schedule Project 🏏
 
 This project, built using Astro, displays the schedule for the ODI World Cup in cricket.
 
